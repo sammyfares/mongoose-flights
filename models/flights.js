@@ -3,10 +3,19 @@ import mongoose from "mongoose"
 const Schema = mongoose.Schema
 
 const flightsSchema = new Schema({
-    airline: String,
+    airline: {
+        type: String,
+        enum: ["American", "Southwest", "United"],
+        
+    },
     airport: String,
     flightNo: Number,
-    departs: Date,
+    departs: {
+        type: Date,
+        default: function () {
+            return new Date().getFullYear()
+        },
+    }
 
 }, {
     timestamps: true,
