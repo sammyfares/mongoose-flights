@@ -79,6 +79,20 @@ function update(req, res){
         res.redirect('/')
     })
 }
+function createReview(req, res){
+    Flight.findById(req.params.id)
+    .then(flight => {
+        flight.reviews.push(req.body)
+        flight.save()
+        .then(() => {
+            res.redirect(`/flights/${flight._id}`)
+        })
+    })
+    .catch(error => {
+        console.log(error)
+        res.redirect('/')
+    })
+}
 
 export {
     newFlight as new,
@@ -88,5 +102,6 @@ export {
     deleteFlight as delete,
     edit,
     update,
+    createReview,
 
 }
