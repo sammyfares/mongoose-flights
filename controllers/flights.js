@@ -68,6 +68,17 @@ function edit(req, res) {
         res.redirect('/')
     })
 }
+function update(req, res){
+    Flight.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .then(flight => {
+        console.log(flight)
+        res.redirect(`/flights/${flight._id}`)
+    })
+    .catch(error => {
+        console.log(error)
+        res.redirect('/')
+    })
+}
 
 export {
     newFlight as new,
@@ -76,5 +87,6 @@ export {
     show,
     deleteFlight as delete,
     edit,
+    update,
 
 }
