@@ -50,8 +50,7 @@
   action="/flights/<%= flight._id %>/tickets"
   method="POST"
 >
-  <label for="content-textarea">Ticket:</label>
-  <textarea name="content" id="content-textarea"></textarea>
+
   <label for="input-price">Price:</label>
   <input name="price" type="number">
   <button type="submit">Add Price</button>
@@ -63,7 +62,6 @@
 <table>
   <thead>
     <tr>
-      <th>Ticket</th>
       <th>Price</th>
       <th>Seat</th>
     </tr>
@@ -71,7 +69,6 @@
   <tbody>
     <% flight.tickets.forEach(ticket => { %>
       <tr>
-        <td><%= ticket.createdAt.toLocaleDateString() %></td>
         <td><%= ticket.price %></td>
         <td><%= ticket.seat %></td>
       </tr>
