@@ -22,9 +22,9 @@
         <option value="SAN">SAN</option>
       </select>
     <label for="flight-number-select">flight number</label>
-    <input type="text" name="text" value="<%= flight.flighNo %>" id="flightNo-input">
+    <input type="number" name="flightNo" value="<%= flight.flighNo %>" id="flightNo-input">
     <label for="departs-select">Departs</label>
-    <input type="date" name="date" value=" <%= flight.departs %> " id="departs-input">
+    <input type="date" name="departs" value=" <%= flight.departs %> " id="departs-input">
     <button type="submit">Save Movie</button>
   </form>
 </main>
