@@ -2,9 +2,9 @@ import mongoose from "mongoose"
 
 const Schema = mongoose.Schema
 
-const reviewSchema = new Schema({
-    content: String,
-    rating: {type: Number, min: 1, max: 5, default: 5}
+const ticketSchema = new Schema({
+    seat: {type: String, match: /[A-F][1-9]\d?/},
+    price: {type: Number, min: 0}
 }, {
     timestamps: true
 })
@@ -25,7 +25,8 @@ const flightsSchema = new Schema({
             return new Date(new Date().setFullYear(new Date().getFullYear() + 1))
         },
     },
-    reviews: [reviewSchema],
+    tickets: [ticketSchema],
+    meals: [{type: Schema.Types.ObjectId, ref: "Meal"}]
 
 }, {
     timestamps: true,

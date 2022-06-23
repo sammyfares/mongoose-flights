@@ -21,47 +21,65 @@
     <div>Departs </div>
     <div><%= flight.departs %></div>
   </section>
+ <ul>
+  <% flight.meals.forEach(meal => { %>
+<li><%= meal.name %></li>
+  <% }) %>
+ </ul>
+
+
 </section>
 <% // new markup below %>
-<h2>Reviews</h2>
+
+
+
+<form action="/flights/<%= flight._id %>/meals" method="POST" id="add-meals">
+  <select name="mealId" >
+    <% meals.forEach(meal => { %>
+      <option value="<%= meal._id %>"><%= meal.name %></option>
+   <% }) %>
+  </select>
+  <button type="submit">ADD MEAL</button>
+</form>
+
+
+
+<h2>tickets</h2>
 <form 
-  id="add-review-form"
-  action="/flights/<%= flight._id %>/reviews"
+  id="add-ticket-form"
+  action="/flights/<%= flight._id %>/tickets"
   method="POST"
 >
-  <label for="content-textarea">Review:</label>
+  <label for="content-textarea">Ticket:</label>
   <textarea name="content" id="content-textarea"></textarea>
-  <label for="rating-select">Rating:</label>
-  <select name="rating" id="rating-select">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5" selected>5</option>
-  </select>
-  <button type="submit">Add Review</button>
+  <label for="input-price">Price:</label>
+  <input type="number">
+  <button type="submit">Add Price</button>
+  <label for="input-seat">Seat</label>
+  <input name="seat" required pattern="[A-F][1-9]\d?">
+  <button type="submit">Add seat</button>
 </form>
-<% if (flight.reviews.length) {%>
+<% if (flight.tickets.length) {%>
 <table>
   <thead>
     <tr>
-      <th>Date</th>
-      <th>Review</th>
-      <th>Rating</th>
+      <th>Ticket</th>
+      <th>Price</th>
+      <th>Seat</th>
     </tr>
   </thead>
   <tbody>
-    <% flight.reviews.forEach(review => { %>
+    <% flight.tickets.forEach(ticket => { %>
       <tr>
-        <td><%= review.createdAt.toLocaleDateString() %></td>
-        <td><%= review.content %></td>
-        <td><%= review.rating %></td>
+        <td><%= ticket.createdAt.toLocaleDateString() %></td>
+        <td><%= ticket.price %></td>
+        <td><%= ticket.seat %></td>
       </tr>
     <% }) %>
   </tbody>
 </table>
 <% } else { %>
-<h3>No reviews yet</h3>
+<h3>No tickets yet</h3>
 <% } %>
 </main>
   

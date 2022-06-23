@@ -21,8 +21,11 @@ router.get("/:id/edit", flightsCtrl.edit)
 //post Locathost3000/flights
 router.post('/', flightsCtrl.create)
 
-//post localhost3000/flights/:id/review
-router.post('/:id/reviews', flightsCtrl.createReview)
+//post localhost3000/flights/:id/tickete
+router.post('/:id/tickets', flightsCtrl.createTicket)
+
+//post localhost:3000/movies/:id/flights
+router.post('/:id/meals', flightsCtrl.addMeal)
 
 //DELETE localhost:3000 /flights/:id
 router.delete("/:id", flightsCtrl.delete)
